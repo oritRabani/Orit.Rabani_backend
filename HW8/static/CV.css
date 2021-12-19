@@ -1,0 +1,68 @@
+*{
+    border: 1px solid black;
+    text-align: center;
+}
+
+#GridContainer {
+    display: grid;
+    grid-template-areas:
+    'header header header header header'
+    'left left center center center'
+    'bottom bottom bottom bottom bottom'
+    ;
+}
+
+.header {
+    grid-area: header;
+    width: 100%;
+    background-color: darksalmon;
+    height: 20vh;
+    color: black;
+    text-align: center;
+}
+
+.about {
+    grid-area: left;
+    width: 100%;
+    background-color: burlywood;
+    height: 30vh;
+    color: black;
+    text-align: center;
+}
+
+.education {
+    grid-area: center;
+    width: 100%;
+    background-color:bisque;
+    height: 30vh;
+    color: black;
+    text-align: center;
+}
+
+.languages {
+    grid-area: bottom;
+    width: 100%;
+    background-color: sandybrown;
+    height: 20vh;
+    color: black;
+    text-align: center;
+}
+
+#ImageRotate{
+    animation-name: rotatingPic;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+/* media query */
+@media only screen and (max-width: 600px) {
+    body {
+        background-color: cornflowerblue;
+    }
+}
+
+@keyframes rotatingPic  {
+    0%{transform: rotate(0deg)}
+    50%{transform: rotate(-180deg)}
+    100%{transform: rotate(360deg)}
+}

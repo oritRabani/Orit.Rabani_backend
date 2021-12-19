@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CV Contact</title>
+    <link rel="stylesheet" href={{ url_for('static', filename ='CVContantForm.css') }}>
+    <script src={{ url_for('static', filename = 'CV.js') }}></script>
+</head>
+<body>
+{% include 'header.html' %}
+<h1> Contact </h1>
+<form id="contact_form">
+    <p>
+        <label for="FirstName"> First name</label>
+        <input type="text" id="FirstName">
+        <br>
+        <label for="LastName"> Last name</label>
+        <input type="text" id="LastName">
+        <br>
+        <label for="age"> Age </label>
+        <input type="number" id="age" min="18" max="100" required>
+        <br>
+        <label for="email"> Email </label>
+        <input type="email" id="email">
+        <br>
+        <label for="company"> Company </label>
+        <input type="text" id="company">
+        <br>
+        <br>
+        <input type="submit" value="Send form" onclick="ValidFunc()">
+    </p>
+    <p id="demo"> </p>
+</form>
+</body>
+</html>

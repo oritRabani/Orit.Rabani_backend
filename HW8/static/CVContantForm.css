@@ -1,0 +1,14 @@
+*{
+    text-align: center;
+}
+
+h1 {
+    color: darkslategray;
+    text-align: center;
+    background-color: burlywood;
+}
+
+#contact_form{
+    color: cornflowerblue;
+    background-color: antiquewhite;
+}

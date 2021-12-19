@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+    assignment8
+{% endblock %}
+
+{% block mainContent %}
+    {% if user and hobbies%}
+        <h1> Name: {{ user.firstName | default('Unknown', true) | upper() }} {{ user.lastName | default('Unknown',true) | upper() }} </h1>
+        <h3> My hobbies:</h3>
+        <ul>
+            {% for hobby in hobbies %}
+                <li> {{ hobby }} </li>
+            {% endfor %}
+        </ul>
+    {% elif user and not hobbies %}
+         <h1> Name: {{ user.firstName | default('Unknown', true) | upper() }} {{ user.lastName | default('Unknown',true) | upper() }} </h1>
+         <h3> Please fill in your hobbies</h3>
+    {% else %}
+        <h1> Please Login the website </h1>
+    {% endif %}
+{% endblock %}
