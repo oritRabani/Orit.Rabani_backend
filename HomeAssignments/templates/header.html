@@ -1,4 +1,10 @@
 <header>
     <a href="/assignment8" > Assingnment 8 </a> | <a href="/" > CV </a> |
-    <a href="/CVcontact" > CV contact form</a> | <a href="/thankYou" > Thank you</a>
+    <a href="/CVcontact" > CV contact form</a> | <a href="/thankYou" > Thank you</a> |
+    {% if session.nick_name %}
+         <a href="/logout" > Log out </a>
+    {% else %}
+        <a href="/assignment9" > assignment9 </a>
+    {% endif %}
+
 </header>

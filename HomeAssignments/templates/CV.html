@@ -8,6 +8,7 @@
 </head>
 <body>
 {% include 'header.html' %}
+<h3> Welcome back {{ session.nick_name | default('geust', true) }}</h3>
 <div class="header">
         Orit Rabani <br>
     <a href='/CVcontact'>Contact Me</a>

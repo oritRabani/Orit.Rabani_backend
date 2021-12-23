@@ -8,6 +8,7 @@
 </head>
 <body>
 {% include 'header.html' %}
+<h3> Welcome back {{ session.nick_name | default('geust', true) }}</h3>
 <h1> Contact </h1>
 <form id="contact_form">
     <p>
