@@ -4,6 +4,7 @@
 
 {% block mainContent %}
     <div class="searchForm">
+    <h3> Search Form</h3>
         <form action="/assignment9" >
             <hr>
             Name: <input name= "user_name" type="text">
@@ -14,14 +15,8 @@
         </form>
         {% if u_name %}
             <h3> User Name: {{ u_name }}</h3>
-        {% endif %}
-           {% if u_email %}
             <h3> Email: {{ u_email }}</h3>
-        {% endif %}
-        {% if u_phone %}
             <h3> Phone number: {{ u_phone }}</h3>
-        {% endif %}
-        {% if u_gender %}
             <h3> Gender: {{ u_gender }}</h3>
         {% endif %}
         {% if all_users %}
@@ -39,7 +34,7 @@
      {% if session.nick_name %}
          <h3> Welcome {{ session.nick_name | default('geust',true) }} !</h3>
      {% else %}
-         <h3> Enter nick name and password</h3>
+         <h3> Registration Form </h3>
          <form action="/assignment9" method="post">
             User Name: <input name= "nickName" type="text">
             Password: <input name= "password" type="password">

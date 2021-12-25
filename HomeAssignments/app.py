@@ -32,11 +32,11 @@ def thanks():
 
 # assignment 9 - forms
 # dictionary of users
-users = {'user1': {'name':'Orit', 'email': 'oritrab@post.bgu.ac.il', 'phoneNumber':'0526606415'},
-         'user2': {'name':'Nadav', 'email': 'Nadav@post.bgu.ac.il', 'phoneNumber':'0526606416'},
-         'user3': {'name':'Ruth', 'email': 'ruth@post.bgu.ac.il', 'phoneNumber':'0526606417'},
-         'user4': {'name':'Yuval', 'email': 'yuval@post.bgu.ac.il', 'phoneNumber':'0526606418'},
-         'user5': {'name':'Galya', 'email': 'Galya@post.bgu.ac.il', 'phoneNumber':'0526606419'}}
+users = {'user1': {'name':'Orit', 'email': 'oritrab@post.bgu.ac.il', 'phoneNumber':'0526606415','gender': 'F'},
+         'user2': {'name':'Nadav', 'email': 'Nadav@post.bgu.ac.il', 'phoneNumber':'0526606416','gender': 'M'},
+         'user3': {'name':'Ruth', 'email': 'ruth@post.bgu.ac.il', 'phoneNumber':'0526606417','gender': 'F'},
+         'user4': {'name':'Yuval', 'email': 'yuval@post.bgu.ac.il', 'phoneNumber':'0526606418','gender': 'M'},
+         'user5': {'name':'Galya', 'email': 'Galya@post.bgu.ac.il', 'phoneNumber':'0526606419','gender': 'F'}}
 
 @app.route('/logout')
 def log_out():
@@ -48,14 +48,18 @@ def assign_9():
     if request.method == 'GET':
         if 'user_name' in request.args:
             user_name = request.args['user_name']
-            email = request.args['email']
-            phone = request.args['phone']
-            gender = request.args['gender']
-
             if user_name == "":
                 return render_template('assignment9.html', all_users = users)
             else:
-                return render_template('assignment9.html', u_name = user_name, u_email = email, u_phone = phone, u_gender = gender)
+                # email = request.args['email']
+                # phone = request.args['phone']
+                # gender = request.args['gender']
+                for u_id, u_info in users.items():
+                    if u_info['name'] == user_name:
+                        email = u_info['email']
+                        phone = u_info['phoneNumber']
+                        gender = u_info['gender']
+                        return render_template('assignment9.html', u_name = user_name, u_email = email, u_phone = phone, u_gender = gender)
         return render_template('assignment9.html')
     if request.method == 'POST':
         nick_name = request.form['nickName']
