@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} assignment10 {% endblock %}
+
+{% block mainContent %}
+    <script src={{ url_for('assignment10.static', filename = 'js/assignment10.js')}}></script>
+    <h1> Assignment 10 Page</h1>
+    <h2> Insertion Form </h2>
+    <form action="/insert_user" method="post" onsubmit="insertFunc()">
+        <input type="text" name="name" placeholder="Name">
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <input type="text" name="phone" placeholder="Phone Number">
+        <input type="text" name="gender" placeholder="Gender">
+        <input type="Submit" value="Insert">
+    </form>
+    <hr>
+    <h2> Update Form </h2>
+    <form action="/update_user" method="post">
+        <input type="email" name="OldEmail" placeholder="Old Email">
+        <input type="email" name="NewEmail" placeholder="New Email">
+        <input type="text" name="OldPhone" placeholder="Old Phone Number">
+        <input type="text" name="NewPhone" placeholder="New Phone Number">
+        <input type="submit" value="Update" onclick="updateFunc()">
+    </form>
+    <hr>
+    <h2> List Of Users </h2>
+    <ul>
+        {% for user in users %}
+            <li>
+            <form action="/delete_user" method="post" style="display: inline">
+                <input type="hidden"  name='id' value="{{ user.id }}">
+                <input type="submit" value="Delete" onclick="deleteFunc()">
+            </form> Name: {{ user.name }}, Email: {{ user.email }} </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

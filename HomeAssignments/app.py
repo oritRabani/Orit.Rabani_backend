@@ -2,6 +2,7 @@ from flask import Flask,  render_template, request, session, redirect, url_for
 
 app = Flask(__name__)
 app.secret_key = '1234'
+app.config.from_pyfile('settings.py')
 
 # CV page - main page
 @app.route('/')
@@ -71,6 +72,12 @@ def assign_9():
             return redirect(url_for('CV_page'))
         else:
             return render_template('assignment9.html')
+
+
+# Assignment 10 - Blueprint
+from pages.assignment10.assignment10 import assignment10
+app.register_blueprint(assignment10)
+
 
 if __name__ == '__main__':
     app.run()
