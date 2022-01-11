@@ -1,5 +1,7 @@
 from flask import Flask,  render_template, request, session, redirect, url_for
-
+from interact_with_DB import interact_db
+import json
+import requests
 app = Flask(__name__)
 app.secret_key = '1234'
 app.config.from_pyfile('settings.py')
@@ -78,6 +80,30 @@ def assign_9():
 from pages.assignment10.assignment10 import assignment10
 app.register_blueprint(assignment10)
 
+# Return json format of users DB
+@app.route('/assignment11/users')
+def assign11_users_func():
+    query = 'SELECT * FROM users'
+    users = interact_db(query=query, query_type='fetch')
+    json_users = json.dumps(users)
+    return json_users
+
+@app.route('/assignment11/outer_source',methods=['GET','POST'])
+def assign11_outer_func():
+    if request.method == 'GET':
+        if 'id_backend' in request.args:
+            number = int(request.args['id_backend'])
+            wanted_user = get_wanted_user(number)
+            return render_template('assignment11.html', wanted_user=wanted_user)
+        return render_template('assignment11.html')
+    if request.method == 'POST':
+        return redirect(url_for('/assignment11/outer_source'))
+
+def get_wanted_user(number):
+    res = requests.get(f'https://reqres.in/api/users/{number}')
+    res = res.json()
+    return res
 
 if __name__ == '__main__':
+    app.debug = True
     app.run()

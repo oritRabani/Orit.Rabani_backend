@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %} assignment11 {% endblock %}
+
+{% block mainContent %}
+    <h3> Frontend Form</h3>
+    <form action="/assignment11/outer_source" method="post">
+        <hr>
+        Enter ID: <input name= "id" type="text" id="id_num">
+        <button type="button" onclick="getUser()"> Get User</button>
+    </form>
+    <main>
+    </main>
+
+    <h3> Backend Form</h3>
+    <form action="/assignment11/outer_source" method="get">
+        <hr>
+        Enter ID: <input name= "id_backend" type="text">
+        <input name="submit_backend" type="submit">
+    </form>
+    {% if wanted_user %}
+        <h3> User</h3>
+        <img src="{{ wanted_user.data.avatar }}" alt="Profile picture"><br>
+        <span> {{ wanted_user.data.first_name }} {{ wanted_user.data.last_name}}</span><br>
+        <a href="mailto:{{wanted_user.data.email}}"> send email </a>
+    {% endif %}
+
+    <script src={{ url_for('static', filename = 'NewAssignment11.js') }}></script>
+{% endblock %}
+
