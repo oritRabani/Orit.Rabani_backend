@@ -1,4 +1,4 @@
-from flask import Flask,  render_template, request, session, redirect, url_for
+from flask import Flask,  render_template, request, session, redirect, url_for, jsonify
 from interact_with_DB import interact_db
 import json
 import requests
@@ -83,7 +83,7 @@ app.register_blueprint(assignment10)
 # Return json format of users DB
 @app.route('/assignment11/users')
 def assign11_users_func():
-    query = 'SELECT * FROM users'
+    query = 'SELECT * FROM users.users'
     users = interact_db(query=query, query_type='fetch')
     json_users = json.dumps(users)
     return json_users
@@ -103,6 +103,26 @@ def get_wanted_user(number):
     res = requests.get(f'https://reqres.in/api/users/{number}')
     res = res.json()
     return res
+
+# Assignment 12 route as specified in the instructions
+@app.route('/assignment12/restapi_users', defaults={'USER_ID':1})
+@app.route('/assignment12/restapi_users/<int:USER_ID>', methods = ['GET','POST'])
+def assign12_func(USER_ID):
+    query = 'SELECT * FROM users.users WHERE id=%s;' %(USER_ID)
+    users = interact_db(query=query, query_type='fetch')
+    if len(users)==0:
+        return_dict ={
+            'status': 'faild',
+            'message': 'user not found'
+        }
+    else:
+        return_dict = {
+            f'id': users[0].id,
+            'name': users[0].name,
+            'email': users[0].email
+        }
+    return jsonify(return_dict)
+
 
 if __name__ == '__main__':
     app.debug = True
